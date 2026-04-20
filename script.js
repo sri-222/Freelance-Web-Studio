@@ -12,6 +12,7 @@ const menuToggle = document.getElementById("menuToggle");
     const showcaseDetails = document.getElementById("showcaseDetails");
     const showcaseClose = document.getElementById("showcaseClose");
     const showcasePanel = document.querySelector(".showcase-panel");
+    const leadForm = document.getElementById("leadForm");
     const coarsePointerQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
     let activeShowcaseKey = null;
     let showcaseTimers = [];
@@ -26,9 +27,9 @@ const menuToggle = document.getElementById("menuToggle");
 
     const showcaseData = {
       landing: {
-        kicker: "Starter package",
-        title: "Landing page",
-        description: "A focused one-page website for launches, services, or personal brands. The preview shows how the hero, CTA, proof, and mobile view can work together.",
+        kicker: "Basic package",
+        title: "Single-page website",
+        description: "A one-page business website designed to clearly present your offer, build trust, and drive calls or WhatsApp inquiries.",
         cards: [
           {
             kind: "browser-landing",
@@ -64,15 +65,15 @@ const menuToggle = document.getElementById("menuToggle");
           }
         ],
         details: [
-          ["Best for", "Product launches, service ads, creator portfolios, and single-offer pages that need a strong CTA."],
-          ["What clients get", "Hero section, benefits, testimonials, pricing or offer block, contact CTA, and mobile-friendly layout."],
-          ["Order flow", "Client sends the copy and references, then you deliver a polished one-page site ready to launch."]
+          ["Best for", "Local businesses and service providers who need a clean, professional online presence quickly."],
+          ["What clients get", "Headline, offer section, trust points, pricing block, contact CTA, and mobile-friendly layout."],
+          ["Delivery", "A fast-launch package that can usually be completed within 2 to 3 days."]
         ]
       },
       business: {
-        kicker: "Growth package",
-        title: "Business website",
-        description: "A multi-section website for agencies, consultants, local businesses, or startups that need trust, service pages, and direct inquiries.",
+        kicker: "Standard package",
+        title: "Multi-page website",
+        description: "A stronger business website with multiple sections or pages to explain services, build credibility, and increase inquiries.",
         cards: [
           {
             kind: "browser-business",
@@ -107,15 +108,15 @@ const menuToggle = document.getElementById("menuToggle");
           }
         ],
         details: [
-          ["Best for", "Studios, agencies, consultants, coaches, doctors, restaurants, and local companies who need a real web presence."],
-          ["What clients get", "Home page, services, about section, testimonials, FAQ, contact area, and structured navigation."],
-          ["Order flow", "Perfect for clients who want something stronger than a single landing page but not a large app build."]
+          ["Best for", "Businesses that need more detailed content, stronger trust, and a more complete customer journey."],
+          ["What clients get", "Service sections, business info, trust-building blocks, contact flow, and a clearer site structure."],
+          ["Best value", "This is the most balanced option for businesses that want more leads without overcomplicating the project."]
         ]
       },
       store: {
-        kicker: "Sales package",
-        title: "Store or order site",
-        description: "A conversion-first website for selling products, taking custom orders, or showcasing menus and offers with direct contact buttons.",
+        kicker: "Premium package",
+        title: "Custom website",
+        description: "A custom website experience for businesses that need tailored sections, stronger branding, and more flexibility.",
         cards: [
           {
             kind: "browser-store",
@@ -151,9 +152,9 @@ const menuToggle = document.getElementById("menuToggle");
           }
         ],
         details: [
-          ["Best for", "Small shops, food brands, custom sellers, apparel pages, and businesses that want order-taking online."],
-          ["What clients get", "Product sections, featured offers, order CTA, WhatsApp or inquiry flow, and a layout built for conversion."],
-          ["Order flow", "Clients can use this type of site to collect leads, orders, or simple checkout requests without overcomplicating it."]
+          ["Best for", "Businesses that want custom design direction, tailored sections, or more advanced layout needs."],
+          ["What clients get", "Custom design treatment, stronger brand feel, extra features, and a more flexible page structure."],
+          ["Outcome", "A more premium customer-facing website built to stand out while still keeping the inquiry flow simple."]
         ]
       }
     };
@@ -419,6 +420,27 @@ const menuToggle = document.getElementById("menuToggle");
 
     showcaseClose.addEventListener("click", closeShowcase);
     showcaseOverlay.querySelector("[data-close-showcase]").addEventListener("click", closeShowcase);
+
+    if (leadForm) {
+      leadForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById("customerName").value.trim();
+        const businessType = document.getElementById("businessType").value.trim();
+        const phone = document.getElementById("phoneNumber").value.trim();
+        const selectedPackage = document.getElementById("websitePackage").value;
+
+        const message = [
+          "Hi, I want this website for my business.",
+          "Name: " + name,
+          "Business type: " + businessType,
+          "Phone number: " + phone,
+          "Preferred package: " + selectedPackage
+        ].join("\n");
+
+        window.open("https://wa.me/919043313317?text=" + encodeURIComponent(message), "_blank", "noopener");
+      });
+    }
 
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape" && mobilePanel.classList.contains("open")) {
