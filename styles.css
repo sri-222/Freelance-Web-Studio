@@ -750,6 +750,7 @@
       inset: 0;
       display: grid;
       place-items: center;
+      align-items: center;
       padding: 24px 16px;
       background: rgba(29, 18, 12, 0.45);
       backdrop-filter: blur(18px);
@@ -772,6 +773,7 @@
     .showcase-panel {
       position: relative;
       width: min(1120px, 100%);
+      max-height: calc(100dvh - 48px);
       display: grid;
       grid-template-columns: 1.04fr 0.96fr;
       gap: 24px;
@@ -784,7 +786,9 @@
       box-shadow: 0 36px 120px rgba(43, 24, 12, 0.24);
       transform: translateY(24px) scale(0.98);
       transition: transform 280ms ease;
-      overflow: hidden;
+      overflow: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
     }
 
     .showcase-overlay.open .showcase-panel {
@@ -804,11 +808,17 @@
       line-height: 1;
       cursor: pointer;
       z-index: 2;
+      transition: transform 180ms ease, background 180ms ease;
+      touch-action: manipulation;
+    }
+
+    .showcase-close:hover {
+      transform: scale(1.06);
     }
 
     .showcase-stage {
       position: relative;
-      min-height: 560px;
+      min-height: clamp(360px, 56vh, 560px);
       border-radius: 32px;
       overflow: hidden;
       background:
@@ -1569,6 +1579,7 @@
     .showcase-info {
       align-self: center;
       padding: 18px 12px 18px 8px;
+      min-width: 0;
     }
 
     .showcase-kicker {
@@ -1855,10 +1866,17 @@
 
       .showcase-panel {
         grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 22px;
+        max-height: calc(100dvh - 28px);
       }
 
       .showcase-stage {
-        min-height: 420px;
+        min-height: clamp(320px, 48vh, 420px);
+      }
+
+      .showcase-info {
+        padding: 0 4px 8px;
       }
 
       .footer-links {
@@ -2008,26 +2026,54 @@
 
       .showcase-overlay {
         padding: 12px;
+        align-items: center;
       }
 
       .showcase-panel {
+        width: 100%;
         padding: 18px;
         border-radius: 26px;
+        max-height: calc(100dvh - 16px);
       }
 
       .showcase-stage {
-        min-height: 340px;
+        min-height: clamp(250px, 40vh, 320px);
         border-radius: 24px;
       }
 
       .showcase-card {
-        width: 160px;
+        width: 146px;
         border-radius: 22px;
         padding: 8px;
       }
 
       .showcase-screen {
         border-radius: 16px;
+      }
+
+      .showcase-info {
+        padding: 0;
+      }
+
+      .showcase-title {
+        margin-top: 14px;
+        font-size: clamp(1.8rem, 8vw, 2.6rem);
+      }
+
+      .showcase-description {
+        margin-top: 14px;
+        font-size: 0.94rem;
+        line-height: 1.65;
+      }
+
+      .detail-list {
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      .detail-pop {
+        padding: 14px 15px;
+        border-radius: 18px;
       }
     }
 

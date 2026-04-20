@@ -11,8 +11,11 @@ const menuToggle = document.getElementById("menuToggle");
     const showcaseDescription = document.getElementById("showcaseDescription");
     const showcaseDetails = document.getElementById("showcaseDetails");
     const showcaseClose = document.getElementById("showcaseClose");
+    const showcasePanel = document.querySelector(".showcase-panel");
     const coarsePointerQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
+    let activeShowcaseKey = null;
     let showcaseTimers = [];
+    let closeShowcaseTimer = null;
 
     function setMobileMenuState(isOpen) {
       mobilePanel.classList.toggle("open", isOpen);
@@ -171,6 +174,10 @@ const menuToggle = document.getElementById("menuToggle");
       if (window.innerWidth > 980 && mobilePanel.classList.contains("open")) {
         setMobileMenuState(false);
       }
+
+      if (activeShowcaseKey && showcaseOverlay.classList.contains("open")) {
+        openShowcase(activeShowcaseKey);
+      }
     });
 
     const observer = new IntersectionObserver(function (entries) {
@@ -223,6 +230,42 @@ const menuToggle = document.getElementById("menuToggle");
         window.clearTimeout(timer);
       });
       showcaseTimers = [];
+
+      if (closeShowcaseTimer) {
+        window.clearTimeout(closeShowcaseTimer);
+        closeShowcaseTimer = null;
+      }
+    }
+
+    function getResponsiveShowcaseItem(item, index) {
+      const viewportWidth = window.innerWidth;
+      const itemConfig = Object.assign({}, item);
+
+      if (viewportWidth <= 640) {
+        const mobileLayouts = [
+          { left: "6%", top: "19%", width: "112px", rotate: "-10deg", shadowTop: "158px", shadowWidth: "104px" },
+          { left: "35%", top: "8%", width: "132px", rotate: "-2deg", shadowTop: "178px", shadowWidth: "122px" },
+          { left: "70%", top: "21%", width: "88px", rotate: "9deg", shadowTop: "144px", shadowWidth: "88px" }
+        ];
+        return Object.assign(itemConfig, mobileLayouts[index] || {});
+      }
+
+      if (viewportWidth <= 980) {
+        const tabletLayouts = [
+          { left: "8%", top: "18%", width: "164px", rotate: "-12deg", shadowTop: "198px", shadowWidth: "154px" },
+          { left: "36%", top: "8%", width: "194px", rotate: "-2deg", shadowTop: "220px", shadowWidth: "180px" },
+          { left: "70%", top: "21%", width: "118px", rotate: "10deg", shadowTop: "188px", shadowWidth: "116px" }
+        ];
+        return Object.assign(itemConfig, tabletLayouts[index] || {});
+      }
+
+      const desktopLayouts = [
+        { width: "206px", shadowWidth: "198px" },
+        { width: "234px", shadowWidth: "214px" },
+        { width: "142px", shadowWidth: "142px" }
+      ];
+
+      return Object.assign(itemConfig, desktopLayouts[index] || {});
     }
 
     function buildShowcaseCard(item) {
@@ -307,20 +350,24 @@ const menuToggle = document.getElementById("menuToggle");
       showcaseKicker.textContent = data.kicker;
       showcaseTitle.textContent = data.title;
       showcaseDescription.textContent = data.description;
+      activeShowcaseKey = key;
+      showcasePanel.scrollTop = 0;
+      showcaseOverlay.scrollTop = 0;
 
       showcaseOverlay.classList.add("open");
       showcaseOverlay.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
 
       data.cards.forEach(function (item, index) {
-        const built = buildShowcaseCard(item);
+        const responsiveItem = getResponsiveShowcaseItem(item, index);
+        const built = buildShowcaseCard(responsiveItem);
         showcaseStage.appendChild(built.shadow);
         showcaseStage.appendChild(built.card);
 
         const timer = window.setTimeout(function () {
           built.card.classList.add("visible");
           built.shadow.classList.add("visible");
-          built.card.style.transform = "translate3d(0, 0, 0) rotate(" + item.rotate + ") scale(1)";
+          built.card.style.transform = "translate3d(0, 0, 0) rotate(" + responsiveItem.rotate + ") scale(1)";
           built.card.classList.add("animate");
         }, 180 + (index * 240));
 
@@ -346,6 +393,15 @@ const menuToggle = document.getElementById("menuToggle");
       showcaseOverlay.classList.remove("open");
       showcaseOverlay.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
+      activeShowcaseKey = null;
+
+      closeShowcaseTimer = window.setTimeout(function () {
+        showcaseStage.innerHTML = "";
+        showcaseDetails.innerHTML = "";
+        showcasePanel.scrollTop = 0;
+        showcaseOverlay.scrollTop = 0;
+        closeShowcaseTimer = null;
+      }, 260);
     }
 
     showcaseCards.forEach(function (card) {
