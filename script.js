@@ -14,139 +14,135 @@ const menuToggle = document.getElementById("menuToggle");
     let showcaseTimers = [];
 
     const showcaseData = {
-      phones: {
-        kicker: "Explore models",
-        title: "Flagship smartphones",
-        description: "Three single-piece phone models float in one by one like a product launch reveal, then the comparison details appear on the right.",
+      landing: {
+        kicker: "Starter package",
+        title: "Landing page",
+        description: "A focused one-page website for launches, services, or personal brands. The preview shows how the hero, CTA, proof, and mobile view can work together.",
         cards: [
           {
-            kind: "phone-back",
-            brand: "iPhone",
-            colors: ["#d9d4cf", "#a8a09a"],
-            left: "12%",
+            kind: "browser-landing",
+            left: "9%",
             top: "18%",
-            rotate: "-18deg",
+            rotate: "-14deg",
             z: "1",
             width: "220px",
-            shadowTop: "302px"
+            ratio: "0.78",
+            shadowTop: "242px"
           },
           {
-            kind: "phone-front",
-            brand: "Samsung",
-            colors: ["#2b3037", "#111519"],
+            kind: "browser-landing",
+            accent: "teal",
             left: "34%",
-            top: "10%",
-            rotate: "-4deg",
+            top: "9%",
+            rotate: "-2deg",
             z: "2",
-            width: "226px",
-            shadowTop: "314px"
+            width: "250px",
+            ratio: "0.8",
+            shadowTop: "266px"
           },
           {
-            kind: "phone-back",
-            brand: "Vivo",
-            colors: ["#59d1cb", "#1c7e85"],
-            left: "57%",
-            top: "21%",
+            kind: "mobile-preview",
+            left: "66%",
+            top: "22%",
             rotate: "12deg",
             z: "3",
-            width: "214px",
-            shadowTop: "296px"
+            width: "150px",
+            ratio: "0.5",
+            shadowTop: "244px",
+            shadowWidth: "150px"
           }
         ],
         details: [
-          ["iPhone hero", "Titanium-look back, triple camera island, and a cleaner premium finish for your headline model."],
-          ["Samsung spotlight", "Edge-to-edge front display, bold contrast screen, and flagship spec positioning in the center."],
-          ["Vivo feature drop", "Color-pop hardware style for camera-first buyers who want a younger, more stylish phone option."]
+          ["Best for", "Product launches, service ads, creator portfolios, and single-offer pages that need a strong CTA."],
+          ["What clients get", "Hero section, benefits, testimonials, pricing or offer block, contact CTA, and mobile-friendly layout."],
+          ["Order flow", "Client sends the copy and references, then you deliver a polished one-page site ready to launch."]
         ]
       },
-      accessories: {
-        kicker: "Shop gear",
-        title: "Audio and power gear",
-        description: "The same reveal pattern now uses floating product objects instead of photos, so the accessory section feels like a premium product shelf.",
+      business: {
+        kicker: "Growth package",
+        title: "Business website",
+        description: "A multi-section website for agencies, consultants, local businesses, or startups that need trust, service pages, and direct inquiries.",
         cards: [
           {
-            kind: "pods",
-            brand: "Pods",
-            left: "14%",
-            top: "19%",
-            rotate: "-16deg",
+            kind: "browser-business",
+            left: "8%",
+            top: "20%",
+            rotate: "-12deg",
             z: "1",
-            width: "210px",
-            ratio: "0.82",
-            shadowTop: "238px"
+            width: "220px",
+            ratio: "0.76",
+            shadowTop: "236px"
           },
           {
-            kind: "charger",
-            brand: "Flash",
-            left: "37%",
-            top: "11%",
-            rotate: "-3deg",
+            kind: "browser-dashboard",
+            left: "35%",
+            top: "8%",
+            rotate: "-1deg",
             z: "2",
-            width: "210px",
+            width: "260px",
             ratio: "0.82",
-            shadowTop: "238px"
+            shadowTop: "278px"
           },
           {
-            kind: "watch",
-            brand: "Watch",
-            left: "60%",
+            kind: "browser-business",
+            accent: "rose",
+            left: "64%",
             top: "22%",
             rotate: "13deg",
             z: "3",
-            width: "210px",
-            ratio: "0.82",
-            shadowTop: "238px"
+            width: "190px",
+            ratio: "0.72",
+            shadowTop: "208px"
           }
         ],
         details: [
-          ["Earbuds reveal", "A floating buds case and stems make the audio section feel more like a product ad than a catalog block."],
-          ["Power brick detail", "Fast-charging hardware gets its own center-stage object, which helps simple add-ons feel more premium."],
-          ["Smart watch finish", "The watch face adds another tech silhouette so the accessory side feels fuller and more styled."]
+          ["Best for", "Studios, agencies, consultants, coaches, doctors, restaurants, and local companies who need a real web presence."],
+          ["What clients get", "Home page, services, about section, testimonials, FAQ, contact area, and structured navigation."],
+          ["Order flow", "Perfect for clients who want something stronger than a single landing page but not a large app build."]
         ]
       },
-      repairs: {
-        kicker: "Book repair",
-        title: "Quick-fix service lab",
-        description: "The repair popup now tells a cleaner service story with object-style models: damaged phone, repair tools, then the restored result.",
+      store: {
+        kicker: "Sales package",
+        title: "Store or order site",
+        description: "A conversion-first website for selling products, taking custom orders, or showcasing menus and offers with direct contact buttons.",
         cards: [
           {
-            kind: "phone-front-cracked",
-            brand: "Broken",
-            colors: ["#24292f", "#12161a"],
-            left: "12%",
-            top: "20%",
-            rotate: "-18deg",
+            kind: "browser-store",
+            left: "10%",
+            top: "18%",
+            rotate: "-14deg",
             z: "1",
-            width: "214px",
-            shadowTop: "296px"
+            width: "220px",
+            ratio: "0.78",
+            shadowTop: "242px"
           },
           {
-            kind: "repair-kit",
-            brand: "Lab",
+            kind: "browser-store",
+            accent: "teal",
             left: "35%",
-            top: "12%",
+            top: "10%",
             rotate: "-2deg",
             z: "2",
-            width: "214px",
+            width: "252px",
             ratio: "0.82",
-            shadowTop: "240px"
+            shadowTop: "274px"
           },
           {
-            kind: "phone-back",
-            brand: "Fixed",
-            colors: ["#a6c6ff", "#647aa8"],
-            left: "58%",
+            kind: "browser-checkout",
+            left: "67%",
             top: "22%",
             rotate: "12deg",
             z: "3",
-            width: "214px",
-            shadowTop: "296px"
+            width: "168px",
+            ratio: "0.68",
+            shadowTop: "210px",
+            shadowWidth: "160px"
           }
         ],
         details: [
-          ["Problem first", "The cracked-screen model opens the sequence so people instantly understand the repair journey."],
-          ["Bench stage", "A dedicated tool slab in the center makes the service process look deliberate and professional."],
-          ["Restored result", "The final device lands as the polished outcome, which makes your repair CTA feel more trustworthy."]
+          ["Best for", "Small shops, food brands, custom sellers, apparel pages, and businesses that want order-taking online."],
+          ["What clients get", "Product sections, featured offers, order CTA, WhatsApp or inquiry flow, and a layout built for conversion."],
+          ["Order flow", "Clients can use this type of site to collect leads, orders, or simple checkout requests without overcomplicating it."]
         ]
       }
     };
@@ -221,100 +217,47 @@ const menuToggle = document.getElementById("menuToggle");
       const shell = document.createElement("div");
       shell.className = "model-shell";
 
-      if (item.kind === "phone-back" || item.kind === "phone-front" || item.kind === "phone-front-cracked") {
-        const phone = document.createElement("div");
-        phone.className = "phone-shell";
-        phone.style.setProperty("--device-a", item.colors ? item.colors[0] : "#d9d4cf");
-        phone.style.setProperty("--device-b", item.colors ? item.colors[1] : "#8f8780");
+      if (item.kind === "browser-landing" || item.kind === "browser-business" || item.kind === "browser-store" || item.kind === "browser-dashboard" || item.kind === "browser-checkout") {
+        const browser = document.createElement("div");
+        browser.className = "browser-model " + item.kind + (item.accent ? " accent-" + item.accent : "");
 
-        const surface = document.createElement("div");
-        surface.className = "phone-surface " + (item.kind === "phone-back" ? "back" : "front");
+        const topbar = document.createElement("div");
+        topbar.className = "browser-topbar";
+        topbar.innerHTML = "<span></span><span></span><span></span><div class=\"browser-url\"></div>";
+        browser.appendChild(topbar);
 
-        if (item.kind === "phone-back") {
-          const camera = document.createElement("div");
-          camera.className = "camera-island";
+        const body = document.createElement("div");
+        body.className = "browser-body";
 
-          const lensOne = document.createElement("div");
-          lensOne.className = "lens";
-          const lensTwo = document.createElement("div");
-          lensTwo.className = "lens";
-          const lensThree = document.createElement("div");
-          lensThree.className = "lens";
-          const sensor = document.createElement("div");
-          sensor.className = "sensor-dot";
-
-          camera.appendChild(lensOne);
-          camera.appendChild(lensTwo);
-          camera.appendChild(lensThree);
-          camera.appendChild(sensor);
-          surface.appendChild(camera);
-
-          const badge = document.createElement("div");
-          badge.className = "brand-badge";
-          badge.textContent = item.brand;
-          surface.appendChild(badge);
-
-          const mini = document.createElement("div");
-          mini.className = "brand-mark-mini";
-          surface.appendChild(mini);
-        } else {
-          const notch = document.createElement("div");
-          notch.className = "screen-notch";
-          const orbOne = document.createElement("div");
-          orbOne.className = "screen-orb";
-          const orbTwo = document.createElement("div");
-          orbTwo.className = "screen-orb-two";
-          const lines = document.createElement("div");
-          lines.className = "screen-lines";
-          lines.innerHTML = "<span></span><span></span><span></span>";
-
-          surface.appendChild(notch);
-          surface.appendChild(orbOne);
-          surface.appendChild(orbTwo);
-          surface.appendChild(lines);
-
-          if (item.kind === "phone-front-cracked") {
-            const crack = document.createElement("div");
-            crack.style.position = "absolute";
-            crack.style.inset = "0";
-            crack.style.background = "linear-gradient(140deg, transparent 0 18%, rgba(255,255,255,0.56) 18.5%, transparent 19%), linear-gradient(28deg, transparent 0 62%, rgba(255,255,255,0.42) 62.4%, transparent 63%), linear-gradient(88deg, transparent 0 40%, rgba(255,255,255,0.34) 40.3%, transparent 41%), linear-gradient(118deg, transparent 0 72%, rgba(255,255,255,0.28) 72.3%, transparent 73%)";
-            surface.appendChild(crack);
-          }
+        if (item.kind === "browser-landing") {
+          body.innerHTML = "<div class=\"mock-hero\"></div><div class=\"mock-text long\"></div><div class=\"mock-text\"></div><div class=\"mock-cta-row\"><span></span><span></span></div><div class=\"mock-grid three\"><div></div><div></div><div></div></div>";
         }
 
-        const sheen = document.createElement("div");
-        sheen.className = "phone-sheen";
-        surface.appendChild(sheen);
-        phone.appendChild(surface);
-        shell.appendChild(phone);
+        if (item.kind === "browser-business") {
+          body.innerHTML = "<div class=\"mock-split\"><div class=\"mock-copy\"><div class=\"mock-text long\"></div><div class=\"mock-text\"></div><div class=\"mock-text short\"></div></div><div class=\"mock-visual\"></div></div><div class=\"mock-grid two\"><div></div><div></div></div><div class=\"mock-stat-row\"><span></span><span></span><span></span></div>";
+        }
+
+        if (item.kind === "browser-dashboard") {
+          body.innerHTML = "<div class=\"mock-dashboard\"><div class=\"mock-sidebar\"></div><div class=\"mock-content\"><div class=\"mock-chart\"></div><div class=\"mock-grid two\"><div></div><div></div></div><div class=\"mock-text long\"></div></div></div>";
+        }
+
+        if (item.kind === "browser-store") {
+          body.innerHTML = "<div class=\"mock-banner\"></div><div class=\"mock-grid store\"><div></div><div></div><div></div><div></div></div><div class=\"mock-cta-row\"><span></span><span></span></div>";
+        }
+
+        if (item.kind === "browser-checkout") {
+          body.innerHTML = "<div class=\"mock-text\"></div><div class=\"mock-cart\"><div class=\"mock-cart-item\"></div><div class=\"mock-cart-item\"></div><div class=\"mock-cart-item small\"></div></div><div class=\"mock-button large\"></div>";
+        }
+
+        browser.appendChild(body);
+        shell.appendChild(browser);
       }
 
-      if (item.kind === "pods") {
-        const pods = document.createElement("div");
-        pods.className = "pods-shell";
-        pods.innerHTML = "<div class=\"pod pod-left\"></div><div class=\"pod pod-right\"></div><div class=\"charge-case\"></div>";
-        shell.appendChild(pods);
-      }
-
-      if (item.kind === "charger") {
-        const charger = document.createElement("div");
-        charger.className = "charger-shell";
-        charger.innerHTML = "<div class=\"charger-block\"></div><div class=\"charger-glow\"></div>";
-        shell.appendChild(charger);
-      }
-
-      if (item.kind === "watch") {
-        const watch = document.createElement("div");
-        watch.className = "watch-shell";
-        watch.innerHTML = "<div class=\"watch-face\"><div class=\"watch-display\"><div class=\"watch-time\">10:09</div></div></div>";
-        shell.appendChild(watch);
-      }
-
-      if (item.kind === "repair-kit") {
-        const repair = document.createElement("div");
-        repair.className = "repair-slab";
-        repair.innerHTML = "<div class=\"repair-grid\"><div class=\"repair-chip tools\"></div><div class=\"repair-chip\"><div class=\"repair-note\">Precision tools and clean assembly</div></div></div>";
-        shell.appendChild(repair);
+      if (item.kind === "mobile-preview") {
+        const mobile = document.createElement("div");
+        mobile.className = "browser-mobile-preview";
+        mobile.innerHTML = "<div class=\"mobile-preview-screen\"><div class=\"mobile-preview-notch\"></div><div class=\"mock-hero small\"></div><div class=\"mock-text\"></div><div class=\"mock-text short\"></div><div class=\"mock-button\"></div><div class=\"mock-grid one\"><div></div></div></div>";
+        shell.appendChild(mobile);
       }
 
       card.appendChild(shell);
